@@ -27,7 +27,7 @@ with smart_run(session):
   """ Activity flow """		
   # general settings		
   session.set_dont_include(["friend1", "friend2", "friend3"])		
-  
+
   # activity		
   session.like_by_tags(["natgeo"], amount=10)
 

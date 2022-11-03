@@ -52,6 +52,7 @@ Inside z_{user} directory:
     logs -f
 """
 
+
 import yaml
 import os
 import random
@@ -62,7 +63,7 @@ from instapy import smart_run
 Loading data
 """
 current_path = os.path.abspath(os.path.dirname(__file__))
-data = yaml.safe_load(open("%s/data.yaml" % (current_path)))
+data = yaml.safe_load(open(f"{current_path}/data.yaml"))
 
 insta_username = data['username']
 insta_password = data['password']

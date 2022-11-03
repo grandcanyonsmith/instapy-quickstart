@@ -24,31 +24,28 @@ insta_password = ''
 
 
 def get_session():
-    session = InstaPy(username=insta_username,
-                      password=insta_password,
-                      headless_browser=True,
-                      nogui=True,
-                      multi_logs=False)
-
-    return session
+    return InstaPy(
+        username=insta_username,
+        password=insta_password,
+        headless_browser=True,
+        nogui=True,
+        multi_logs=False,
+    )
 
 
 def follow():
     # Send notification to my Telegram
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Follower Started @ {}'"
-            .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Follower Started @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
+
 
     # get a session!
     session = get_session()
 
     # let's go!
     with smart_run(session):
-        counter = 0
-
-        while counter < 5:
-            counter += 1
-
+        for _ in range(5):
             try:
                 # settings
                 session.set_relationship_bounds(enabled=True,
@@ -73,15 +70,15 @@ def follow():
 
     # Send notification to my Telegram
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Follower Stopped @ {}'"
-        .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Follower Stopped @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
 
 
 def unfollow():
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>/sendMessage?chat_id=*****&text"
-        "='InstaPy Unfollower Started @ {}'"
-        .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>/sendMessage?chat_id=*****&text='InstaPy Unfollower Started @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
+
 
     # get a session!
     session = get_session()
@@ -100,16 +97,15 @@ def unfollow():
             print(traceback.format_exc())
 
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text"
-        "='InstaPy Unfollower Stopped @ {}'"
-        .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Unfollower Stopped @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
 
 
 def xunfollow():
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text"
-        "='InstaPy Unfollower WEDNESDAY Started @ {}'"
-            .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Unfollower WEDNESDAY Started @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
+
 
     # get a session!
     session = get_session()
@@ -129,9 +125,8 @@ def xunfollow():
             print(traceback.format_exc())
 
     requests.get(
-        "https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text"
-        "='InstaPy Unfollower WEDNESDAY Stopped @ {}'"
-            .format(datetime.now().strftime("%H:%M:%S")))
+        f"""https://api.telegram.org/bot<INSERT_BOT_API_KEY_HERE/sendMessage?chat_id=<>INSERT_CHATID_HERE>&text='InstaPy Unfollower WEDNESDAY Stopped @ {datetime.now().strftime("%H:%M:%S")}'"""
+    )
 
 
 # schedulers
